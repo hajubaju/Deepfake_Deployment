@@ -6,3 +6,4 @@ pandas==2.2.2
 scipy
 tensorflow==2.18.0
 pywavelets
+gunicorn
