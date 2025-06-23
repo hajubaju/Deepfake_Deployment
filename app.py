@@ -19,13 +19,13 @@ def home():
 def upload():
     file = request.files.get('audio')
 
-    if not file or file.filename == '':
+    if not file or not file.filename:
         return render_template("result.html", status="error", message="❌ No audio file selected.")
 
     if not allowed_file(file.filename):
         return render_template("result.html", status="error", message="❌ Unsupported audio format.")
 
-    filename = secure_filename(file.filename)
+    filename = secure_filename(file.filename or "")
     path = os.path.join(UPLOAD_FOLDER, filename)
     file.save(path)
 
@@ -40,8 +40,8 @@ def upload():
     if result['status'] == 'error':
         return render_template("result.html", status="error", message=f"❌ Error: {result['message']}")
 
-    prediction = "REAL" if result['prediction'] > 0.5 else "FAKE"
-    confidence = f"{result['prediction']:.4f}"
+    prediction = result['label'].upper()  # e.g., "BONA FIDE" or "SPOOF"
+    confidence = f"{result['confidence']:.4f}"
 
     return render_template("result.html", status="success", prediction=prediction, confidence=confidence)
 
