@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram name="Deepfake Audio Detection Architecture" id="diagram1">
+    <mxGraphModel dx="1424" dy="873" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="2" value="Deepfake Audio Detection System using Raspberry Pi and Flask API" style="text;html=1;fontSize=18;fontStyle=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="140" y="20" width="600" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- GUI Layer -->
+        <mxCell id="3" value="Graphical User Interface (Flask App)" style="swimlane;startSize=30;fillColor=#dae8fc;horizontal=1;childLayout=stackLayout;" vertex="1" parent="1">
+          <mxGeometry x="100" y="70" width="700" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="4" value="- Upload .wav/.flac\n- Record mic audio\n- Submit to backend" style="shape=rectangle;rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="3">
+          <mxGeometry width="200" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- Backend Modules -->
+        <mxCell id="5" value="Backend Modules (Feature Extraction, Processing, Classification)" style="swimlane;startSize=30;fillColor=#ffe6cc;horizontal=1;childLayout=stackLayout;" vertex="1" parent="1">
+          <mxGeometry x="100" y="190" width="700" height="200" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="6" value="1. Feature Extraction\n- Normalize audio\n- EWT &amp; WPT decomposition\n- MFCC, Spectral, Pitch features" style="shape=rectangle;rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="5">
+          <mxGeometry width="220" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="7" value="2. Feature Processing\n- Yeo-Johnson Transform\n- Robust Scaler" style="shape=rectangle;rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="5">
+          <mxGeometry width="220" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="8" value="3. Source Classification\n- Load .tflite model\n- Run Inference\n- Output label + confidence" style="shape=rectangle;rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="5">
+          <mxGeometry width="220" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- Performance Evaluation -->
+        <mxCell id="9" value="Performance Evaluation" style="swimlane;startSize=30;fillColor=#e1d5e7;horizontal=1;childLayout=stackLayout;" vertex="1" parent="1">
+          <mxGeometry x="100" y="410" width="700" height="140" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="10" value="- Accuracy, Precision, Recall, F1\n- Confusion Matrix\n- Train-Test Curves" style="shape=rectangle;rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="9">
+          <mxGeometry width="660" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- Raspberry Pi Integration -->
+        <mxCell id="11" value="Raspberry Pi Deployment" style="shape=rectangle;rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="570" width="700" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="12" value="- Supports .flac/.wav input\n- Works with mic or upload\n- Optimized for Pi 4 (4GB RAM)" style="shape=rectangle;rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="11">
+          <mxGeometry width="700" height="50" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

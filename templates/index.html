@@ -110,8 +110,8 @@
 <div class="container">
     <h2>Deepfake Audio Detection</h2>
     <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data" style="width:100%">
-        <label for="fileInput">Select audio file (.wav/.flac only):</label>
-        <input type="file" name="audio" accept=".wav,.flac" id="fileInput" />
+        <label for="fileInput">Select audio file :</label>
+        <input type="file" name="audio" id="fileInput" accept=".wav,.flac,.mp3,.mp4a" />
 
         <div style="margin: 1.2rem 0 0.5rem 0; color:#64748b; font-size:0.97rem;">Or record directly:</div>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
@@ -144,14 +144,17 @@
     const MAX_DURATION = 5;
     const MIN_DURATION = 1;
 
-    // Allow only .wav and .flac uploads
+    // Prevent non-.wav uploads
     fileInput.addEventListener('change', function() {
-        if (
-            fileInput.files.length > 0 &&
-            !(/\.(wav|flac)$/i).test(fileInput.files[0].name)
-        ) {
-            errorMsg.textContent = "Only .wav or .flac files are allowed.";
-            fileInput.value = ""; // reset
+        if (fileInput.files.length > 0 ) {
+           const file = fileInput.files[0];
+           const allowedTypes = ['audio/wav', 'audio/x-wav', 'audio/flac', 'audio/x-flac'];
+           if (!allowedTypes.includes(file.type) && !file.name.endsWith('.wav') && !file.name.endsWith('.flac')) {
+               errorMsg.textContent = "Only .wav or .flac files are allowed.";
+               fileInput.value = ""; // reset
+           } else {
+               errorMsg.textContent = "";
+           }
         } else {
             errorMsg.textContent = "";
         }
